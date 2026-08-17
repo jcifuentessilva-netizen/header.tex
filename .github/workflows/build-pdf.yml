@@ -1,30 +1,44 @@
 name: Build PDF Report
+
 on:
   push:
     branches: [ main, master ]
   workflow_dispatch:
+
 permissions:
   contents: read
   actions: write
+
 jobs:
   build-pdf:
     runs-on: ubuntu-latest
     container:
       image: pandoc/latex:3.2-ubuntu
       options: --user root
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Install LaTeX & Fonts
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install System Fonts (DejaVu for fontspec)
         run: |
-          tlmgr update --self
-          tlmgr install fontspec xcolor booktabs array longtable setspace geometry hyperref ltablex collectbox
           apt-get update && apt-get install -y fonts-dejavu-core
-      - name: Compile PDF
+
+      - name: Compile PDF with LuaLaTeX
         run: |
-          pandoc informe.md --pdf-engine=lualatex --include-in-header=header.tex --output=Informe-Semillas-Chile.pdf --standalone --toc --number-sections --resource-path=.
-      - name: Upload PDF
+          pandoc informe.md \
+            --pdf-engine=lualatex \
+            --include-in-header=header.tex \
+            --output=Informe-Semillas-Chile.pdf \
+            --standalone \
+            --toc \
+            --number-sections \
+            --resource-path=.
+
+      - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Informe-Semillas-Chile-PDF
           path: Informe-Semillas-Chile.pdf
           retention-days: 30
+          if-no-files-found: error
