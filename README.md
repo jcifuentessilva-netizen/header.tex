@@ -1,4 +1,4 @@
-# header.tex- Configuración LaTeX para Pandoc (Compilación con LuaLaTeX)
+Configuración LaTeX para Pandoc (Compilación con LuaLaTeX)
 \usepackage{fontspec}
 \setmainfont{DejaVu Serif}
 \setsansfont{DejaVu Sans}
