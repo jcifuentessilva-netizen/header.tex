@@ -1,0 +1,19 @@
+% header.tex - Configuración LaTeX para Pandoc (Compilación con LuaLaTeX)
+\usepackage{fontspec}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{xcolor}
+\definecolor{HeaderRow}{RGB}{0, 51, 102}
+\definecolor{RowAlt}{RGB}{235, 241, 250}
+\usepackage{longtable, booktabs, array}
+\renewcommand{\arraystretch}{1.3}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true, linkcolor=HeaderRow, urlcolor=HeaderRow, citecolor=HeaderRow,
+  pdfauthor={Asesoría Técnica Parlamentaria}, pdftitle={Informe Semillas Chile - Privatización}
+}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{setspace}
+\setstretch{1.15}
