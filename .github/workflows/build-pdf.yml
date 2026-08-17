@@ -1,6 +1,3 @@
-.github
-workflows
-build-pdf.yml
 name: Build PDF Report
 on:
   push:
